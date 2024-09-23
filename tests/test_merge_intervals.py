@@ -47,10 +47,10 @@ class TestMergeIntervals(unittest.TestCase):
         self.assertEqual(merge_intervals(intervals), expected_output)
 
     # Ungültige Intervalle
-    # def test_invalid_intervals(self):
-    #     intervals = [[1, 5], [7, 3]]  # Endpunkt kleiner als Startpunkt
-    #     with self.assertRaises(ValueError):
-    #         merge_intervals(intervals)
+    def test_invalid_intervals(self):
+        intervals = [[1, 5], [7, 3]]  # Endpunkt kleiner als Startpunkt
+        with self.assertRaises(ValueError):
+            merge_intervals(intervals)
 
 
 # Unit-Tests ausführen
