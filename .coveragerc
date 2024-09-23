@@ -1,0 +1,8 @@
+[run]
+source = core
+
+[report]
+omit =
+    */tests/*
+    */site-packages/*
+
