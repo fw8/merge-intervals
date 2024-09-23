@@ -1,5 +1,5 @@
 import unittest
-from lib.merge_intervals import merge_intervals
+from core.merge_intervals import merge_intervals
 
 # Klasse zum Testen der Funktion merge_intervals
 class TestMergeIntervals(unittest.TestCase):
