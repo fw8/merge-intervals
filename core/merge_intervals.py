@@ -1,4 +1,13 @@
 def merge_intervals(intervals):
+    # Falls die Liste leer ist, gib einfach eine leere Liste zurück
+    if not intervals:
+        return []
+
+    # Validierung: Überprüfe, ob alle Intervalle gültig sind
+    for interval in intervals:
+        if len(interval) != 2 or interval[0] > interval[1]:
+            raise ValueError(f"Ungültiges Intervall: {interval}")
+
     # Sortiere die Intervalle nach ihrem Startpunkt
     intervals.sort(key=lambda x: x[0])
 
