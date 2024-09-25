@@ -1,13 +1,13 @@
 name: Python Tests
 
-# Trigger: Der Workflow wird bei jedem Push und Pull-Request auf den main-Branch ausgeführt
 on:
   push:
     branches:
-      - main
+      - '*'  # Bei jedem Push auf jeden Branch
   pull_request:
     branches:
-      - main
+      - main  # Nur bei Pull Requests gegen den main-Branch
+
 
 jobs:
 
