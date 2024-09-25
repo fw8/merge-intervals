@@ -26,7 +26,7 @@ jobs:
       - name: Check with ruff
         uses: chartboost/ruff-action@v1
 
-  test:
+  unittests:
     runs-on: ubuntu-latest  # Der Job läuft auf einem Ubuntu-Runner
 
     steps:
