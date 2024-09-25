@@ -1,44 +1,40 @@
-# Beschreibung: Diese Funktion nimmt eine Liste von Intervallen als Eingabe und gibt eine Liste von zusammengeführten Intervallen zurück.
+# Funktion: merge_intervals
+# Beschreibung: Diese Funktion nimmt eine Liste von Intervallen und gibt eine Liste von zusammengeführten Intervallen zurück.
+# Die Intervalle werden nach ihrem Startpunkt sortiert und dann zusammengeführt, wenn sie sich überlappen.
 # Parameter:
-# - intervals: Eine Liste von Intervallen, wobei jedes Intervall durch eine Liste von zwei Ganzzahlen dargestellt wird.
-# Rückgabewert: Eine Liste von zusammengeführten Intervallen, wobei jedes Intervall durch eine Liste von zwei Ganzzahlen dargestellt wird.
-#
-# Beispiel:
-# intervals = [[25, 30], [2, 19], [14, 23], [4, 8]]
-# result = merge_intervals(intervals)
-# print(result)  # Ausgabe: [[2, 23], [25, 30]]
-#
-# Hinweis: Die Funktion überprüft, ob die Eingabeintervalle gültig sind und wirft eine ValueError-Exception, wenn ein ungültiges Intervall gefunden wird.
-# Hinweis: Die Intervalle werden nach ihrem Startpunkt sortiert, bevor sie zusammengeführt werden.
-# Hinweis: Die Funktion verwendet eine Liste merged, um die zusammengeführten Intervalle zu speichern.
-# Hinweis: Die Funktion verwendet eine Schleife, um die Intervalle zu überprüfen und zusammenzuführen.
-# Hinweis: Die Funktion verwendet die Funktion max, um den Endpunkt der zusammengeführten Intervalle zu aktualisieren.
-# Hinweis: Die Funktion gibt die Liste der zusammengeführten Intervalle zurück.
+# - intervals: Eine Liste von Intervallen, die zusammengeführt werden sollen.
+# Rückgabewert:
+# - Eine Liste von zusammengeführten Intervallen.
+# Hinweis: Die Funktion verwendet das Modell Interval aus models/types.py.
 
 
-def merge_intervals(intervals):
+from typing import List
+from models.types import Interval
+
+
+def merge_intervals(intervals: List[Interval]) -> List[Interval]:
     # Falls die Liste leer ist, gib einfach eine leere Liste zurück
     if not intervals:
         return []
 
-    # Validierung: Überprüfe, ob alle Intervalle gültig sind
-    for interval in intervals:
-        if len(interval) != 2 or interval[0] > interval[1]:
-            raise ValueError(f"Ungültiges Intervall: {interval}")
-
     # Sortiere die Intervalle nach ihrem Startpunkt
-    intervals.sort(key=lambda x: x[0])
+    intervals.sort(key=lambda interval: interval.start)
 
     # Initialisiere die Liste der zusammengeführten Intervalle
-    merged = []
+    merged = [intervals[0]]  # Starte mit dem ersten Intervall
 
-    for interval in intervals:
-        # Falls die Liste leer ist oder kein Überlapp vorliegt, füge das Intervall hinzu
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
+    # Starte bei Index 1, da das erste Intervall bereits in merged ist
+    for current in intervals[1:]:
+        # Hole das zuletzt zusammengeführte Intervall
+        last_merged = merged[-1]
+
+        # Überprüfe, ob das aktuelle Intervall mit dem letzten zusammengeführten Intervall überlappt
+        if last_merged.end < current.start:
+            # Kein Überlappen, füge das aktuelle Intervall hinzu
+            merged.append(current)
         else:
-            # Führe die Intervalle zusammen
-            merged[-1][1] = max(merged[-1][1], interval[1])
+            # Überlappen, vereine die Intervalle
+            last_merged.end = max(last_merged.end, current.end)
 
     # Gib die Liste der zusammengeführten Intervalle zurück
     return merged

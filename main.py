@@ -1,10 +1,27 @@
 # Beispiel-Code für die Verwendung der Funktion merge_intervals
+from models.types import Interval
 from core.merge_intervals import merge_intervals
 
-# Beispiel-Intervalle
-intervals = [[25, 30], [2, 19], [14, 23], [4, 8]]
-print(f"Input Intervalle: {intervals}")
+try:
+    # Beispiel-Intervalle
+    input_intervals = [
+        Interval(start=25, end=30),
+        Interval(start=2, end=19),
+        Interval(start=14, end=23),
+        Interval(start=4, end=8),
+    ]
 
-# Intervalle sortieren und zusammenführen
-result = merge_intervals(intervals)
-print(f"Output Intervalle: {result}")  # Ausgabe: [[2, 23], [25, 30]]
+    print("Input Intervalle:")
+    for interval in input_intervals:
+        print(f"[{interval.start}, {interval.end}]")
+
+    # Intervalle sortieren und zusammenführen
+    merged_intervals = merge_intervals(input_intervals)
+
+    # Ergebnis anzeigen
+    print("Output Intervalle:")
+    for interval in merged_intervals:
+        print(f"[{interval.start}, {interval.end}]")
+
+except ValueError as e:
+    print("Eingabefehler:", e)
