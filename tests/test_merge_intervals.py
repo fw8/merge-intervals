@@ -52,6 +52,12 @@ class TestMergeIntervals(unittest.TestCase):
             )  # Endpunkt kleiner als Startpunkt
             merge_intervals(intervals)
 
+    # Negative Intervalle
+    def test_negative_intervals(self):
+        with self.assertRaises(ValueError):
+            intervals = self.setup_intervals([[-1, 5], [7, 10]])
+            merge_intervals(intervals)
+
 
 # Unit-Tests ausführen
 if __name__ == "__main__":
