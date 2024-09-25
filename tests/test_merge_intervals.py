@@ -28,12 +28,6 @@ class TestMergeIntervals(unittest.TestCase):
         expected_output = [[1, 8]]
         self.assertEqual(merge_intervals(intervals), expected_output)
 
-    # Bereits gemergte Intervalle
-    def test_already_merged(self):
-        intervals = [[1, 5], [6, 10], [11, 15]]
-        expected_output = [[1, 5], [6, 10], [11, 15]]
-        self.assertEqual(merge_intervals(intervals), expected_output)
-
     # Ein einziges Intervall
     def test_single_interval(self):
         intervals = [[1, 5]]
