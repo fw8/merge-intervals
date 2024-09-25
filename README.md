@@ -104,6 +104,20 @@ Weitere Fehlerbehandlung, um ungültige Eingaben abzufangen und aussagekräftige
 
 Logging kann sinnvoll sein, um zu überwachen, wie die Eingabe verarbeitet wird und wo Engpässe oder Fehler auftreten.
 
+#### Metriken
+
+Metriken bereitstellen (z.B. für Prometheus).
+- Anzahl der verarbeiteten Intervalle:
+  Anzahl der Intervalle, die verarbeitet werden, um Engpässe oder steigende Arbeitslast zu erkennen.
+- Dauer der Merge-Operation:
+  Zeit (Latenz), die benötigt wird, um die Merge-Operation durchzuführen (Durchschnittszeit, maximale Zeit, etc.).
+- Speichernutzung:
+  Überwachung des Speichers, der durch die Merge-Operation verbraucht wird, besonders in Bezug auf große Datenmengen.
+- Anzahl der Fehler:
+  Anzahl der auftretenden Fehler, z. B. wenn ungültige Daten (falsche Typen oder Werte) übergeben werden.
+- Systemressourcen:
+  CPU-Auslastung und Speicherverbrauch während der Ausführung der Merge-Operation. 
+
 #### Unit-Tests
 
 Tests auf Grenzfälle durch Unit-Tests, die sowohl normale als auch Grenzfälle abdecken (z. B. überlappende Intervalle, identische Intervalle, keine Überlappung).
