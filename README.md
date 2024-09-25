@@ -37,7 +37,7 @@ python3.12 -m venv .venv && source .venv/bin/activate
 2. **Benötigte Pakete installieren**:
 
 ```bash {"id":"01J8MCS8YWEK42TE4FKSD1CR06"}
-pip install -r tests/requirements.txt
+pip install -r requirements.txt
 ```
 
 3. **Ausführen der Funktion**:
@@ -50,7 +50,11 @@ python main.py
 
 4. **Unit-Tests ausführen**:
 
-Um die Unit-Tests zu starten, kann `pytest` verwendet werden:
+Um die Unit-Tests zu starten, kann `pytest` verwendet werden. Es müssen allerdings vorher noch zusetzliche Pakete installiert werden.
+
+```bash {"id":"01J8N5M41BMSVR2FQYMEW6EYET"}
+pip install -r tests/requirements.txt
+```
 
 ```bash {"id":"01J8MCS8YWEK42TE4FKXZ40KV5"}
 pytest
@@ -93,15 +97,19 @@ Die Leistung der Funktion wird vor allem durch das Sortieren der Intervalle best
 ### Verbesserungsmöglichkeiten und Herausforderungen bei großen Datenmengen
 
 #### Fehlerbehandlung
+
 Weitere Fehlerbehandlung, um ungültige Eingaben abzufangen und aussagekräftige Fehlermeldungen zu liefern.
 
 #### Logging
+
 Logging kann sinnvoll sein, um zu überwachen, wie die Eingabe verarbeitet wird und wo Engpässe oder Fehler auftreten.
 
 #### Unit-Tests
+
 Tests auf Grenzfälle durch Unit-Tests, die sowohl normale als auch Grenzfälle abdecken (z. B. überlappende Intervalle, identische Intervalle, keine Überlappung).
 
 #### Benchmarking
+
 Durchführen von Benchmarks mit verschiedenen Eingabegrößen, um die Leistung der Funktion bei steigender Eingabegröße zu überwachen.
 
 #### Speicheroptimierung:
@@ -121,4 +129,5 @@ Datenbanken sind auf die Verarbeitung großer Datenmengen spezialisiert und biet
 Für sehr große Datensätze kann das **Teile-und-Herrsche-Prinzip** auch in einer verteilten Architektur angewendet werden. Die Intervall-Daten können in kleinere Teile (Chunks) aufgeteilt und parallel verarbeitet werden, z. B. durch verteilte Systeme wie **Apache Spark** oder mit Microservices-Plattformen wie **Kubernetes**. Die Teilresultate können anschließend in einer abschließenden Phase zusammengeführt werden, um das endgültige Ergebnis zu erhalten.
 
 ---
+
 Durch die oben genannten Techniken lässt sich die Performance und Skalierbarkeit der Merge-Funktion für verschiedene Anwendungsfälle optimieren.
