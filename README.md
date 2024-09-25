@@ -9,7 +9,14 @@ Die Funktion `merge_intervals` nimmt eine Liste von Intervallen entgegen und gib
 Input: `[25,30]`, `[2,19]`, `[14,23]`, `[4,8]`  
 Output: `[2,23]`, `[25,30]`
 
-Die Funktion eignet sich insbesondere für die Verarbeitung von Intervall-Daten wie Zeiträume oder Bereichsangaben, bei denen eine Konsolidierung notwendig ist.
+## Implementierung
+
+Beschreibung des verwendeten Algorithmus:
+
+- Die Intervalle werden zuerst nach ihrem Startpunkt sortiert.
+- Dann durchlaufen wir die sortierte Liste und prüfen, ob das aktuelle Intervall mit dem letzten Intervall der Ergebnisliste überlappt.
+- Wenn eine Überlappung vorliegt, werden die beiden Intervalle zusammengeführt, indem wir den Endpunkt aktualisieren.
+- Wenn keine Überlappung vorliegt, wird das Intervall direkt zur Ergebnisliste hinzugefügt.
 
 ## Installation und Test
 
@@ -74,7 +81,7 @@ docker run --rm -it -v ${pwd}:/work -w /work python:3.12 bash
 
 ### Performance:
 
-Die Leistung der Funktion wird vor allem durch das Sortieren der Intervalle bestimmt. Das Sortieren erfolgt mit einer Laufzeit von **O(n log n)**. Das anschließende Zusammenführen der Intervalle erfolgt in **O(n)**, wobei `n` die Anzahl der Intervalle ist.
+Die Leistung der Funktion wird vor allem durch das Sortieren der Intervalle bestimmt. Das Sortieren erfolgt mit einer Zeitkomplexität von **O(n log n)**. Das anschließende Zusammenführen der Intervalle erfolgt in **O(n)**, wobei `n` die Anzahl der Intervalle ist.
 
 ### Speicherverbrauch:
 
@@ -85,11 +92,23 @@ Die Leistung der Funktion wird vor allem durch das Sortieren der Intervalle best
 
 ### Verbesserungsmöglichkeiten und Herausforderungen bei großen Datenmengen
 
+#### Fehlerbehandlung
+Weitere Fehlerbehandlung, um ungültige Eingaben abzufangen und aussagekräftige Fehlermeldungen zu liefern.
+
+#### Logging
+Logging kann sinnvoll sein, um zu überwachen, wie die Eingabe verarbeitet wird und wo Engpässe oder Fehler auftreten.
+
+#### Unit-Tests
+Tests auf Grenzfälle durch Unit-Tests, die sowohl normale als auch Grenzfälle abdecken (z. B. überlappende Intervalle, identische Intervalle, keine Überlappung).
+
+#### Benchmarking
+Durchführen von Benchmarks mit verschiedenen Eingabegrößen, um die Leistung der Funktion bei steigender Eingabegröße zu überwachen.
+
 #### Speicheroptimierung:
 
 Falls die ursprüngliche Liste nach dem Merge nicht mehr benötigt wird, könnte die Funktion die Eingabeliste direkt modifizieren (in-place), anstatt eine neue Liste zu erzeugen. Dies spart Speicher, da keine Kopien angelegt werden müssen. Die neue Länge der Liste kann dann als Rückgabewert geliefert werden. Dieser Ansatz erhöht die Komplexität der Funktion deutlich und muß auch vom Nutzer der Funktion berücksichtigt werden, da die übergebene Liste manipuliert wird.
 
-#### Teile-und-Herrsche-Ansatz:
+#### Chunking
 
 Wenn die Eingabeliste so groß ist, dass sie nicht in den Speicher passt, sollte die Liste in **Chunks** verarbeitet werden. Zwischenstände können auf die Festplatte oder in eine Datenbank ausgelagert werden (Streaming-Verarbeitung).
 
