@@ -81,6 +81,67 @@ docker run --rm -it -v ${pwd}:/work -w /work python:3.12 bash
 2. **Weiter wie oben**:  
    Innerhalb des Containers kannst du die gleichen Schritte ausführen, um die Umgebung zu installieren und die Funktion bzw. Tests auszuführen.
 
+## Entwicklung
+
+### Projektstruktur
+
+Die wichtigsten Verzeichnisse und Dateien im Projekt:
+
+```txt
+├── README.md
+├── core
+│   └── merge_intervals.py
+├── dev-requirements.txt
+├── main.py
+├── models
+│   └── custom_types.py
+├── requirements.txt
+└── tests
+    ├── requirements.txt
+    └── test_merge_intervals.py
+```
+
+* `core` enthält die eigentliche Anwendung bzw. Funktion
+* `models`enthält die Pydantic-Modelle
+* `tests`enthält die Unit-Tests
+
+### Tools und Methoden
+
+Die Anwendung verschiedener Tools und Vorgehensweisen können helfen, den Code robuster, besser lesbar, besser wartbar und damit weniger fehleranfällig zu machen.
+Es folgt eine Liste von Tools, die beim Entwickeln, aber auch in der automatischen Code-Prüfung verwendet werden.
+
+#### Ruff: Schneller und Leichtgewichtiger Linter
+
+**Ruff** ist ein unglaublich schneller Linter und Code-Formatter, der entwickelt wurde, um große Codebasen effizient zu handhaben. Er ist in Rust geschrieben und zielt darauf ab, Echtzeit-Feedback zu liefern, ohne Geschwindigkeit oder Genauigkeit zu opfern. **Ruff** wurde entwickelt, um Werkzeuge wie Flake8 zu ersetzen, und unterstützt eine breite Palette von Linting-Regeln.
+
+Wichtige Funktionen:
+* 10- bis 100-mal schneller als herkömmliche Linter.
+* Unterstützt eine Vielzahl von Linting-Regeln.
+* Benötigt minimale Konfiguration.
+* Bietet schnelles Feedback während der Entwicklung.
+
+
+#### Pydantic: Datenvalidierung und Verwaltung von Einstellungen
+
+**Pydantic** ist eine Bibliothek zur Datenvalidierung und Einstellungenverwaltung, die Python-Typannotationen verwendet. Sie stellt die Datenintegrität sicher, indem sie Daten validiert und analysiert, was sie ideal für die Handhabung komplexer Konfigurationen und Datenstrukturen macht. **Pydantic** funktioniert hervorragend mit FastAPI und anderen Frameworks und bietet eine nahtlose Validierung von Anfragen- und Antwortdaten.
+
+Wichtige Funktionen:
+* Verwendet Typannotationen zur Datenvalidierung.
+* Parst und konvertiert Daten automatisch.
+* Funktioniert mit FastAPI für die API-Entwicklung.
+* Bietet effiziente und benutzerfreundliche Fehlerbehandlung.
+
+
+#### MyPy: Statische Typüberprüfung
+
+**MyPy** bringt statische Typüberprüfung in Python. Durch das Erzwingen von Typ-Hinweisen hilft **MyPy**, typbezogene Fehler früh im Entwicklungsprozess zu erkennen, was die Robustheit und Lesbarkeit des Codes verbessert. Es ist besonders nützlich für große Codebasen, bei denen dynamische Typisierung zu Laufzeitfehlern führen kann.
+
+Wichtige Funktionen:
+* Bietet statische Typüberprüfung für Python-Code.
+* Hilft, typbezogene Fehler zu erkennen und zu verhindern.
+* Verbessert die Lesbarkeit und Wartbarkeit des Codes.
+* Funktioniert mit Pydantic für eine nahtlose Datenvalidierung.
+
 ## Anmerkungen
 
 ### Performance:
@@ -107,16 +168,17 @@ Logging kann sinnvoll sein, um zu überwachen, wie die Eingabe verarbeitet wird 
 #### Metriken
 
 Metriken bereitstellen (z.B. für Prometheus).
+
 - Anzahl der verarbeiteten Intervalle:
-  Anzahl der Intervalle, die verarbeitet werden, um Engpässe oder steigende Arbeitslast zu erkennen.
+   Anzahl der Intervalle, die verarbeitet werden, um Engpässe oder steigende Arbeitslast zu erkennen.
 - Dauer der Merge-Operation:
-  Zeit (Latenz), die benötigt wird, um die Merge-Operation durchzuführen (Durchschnittszeit, maximale Zeit, etc.).
+   Zeit (Latenz), die benötigt wird, um die Merge-Operation durchzuführen (Durchschnittszeit, maximale Zeit, etc.).
 - Speichernutzung:
-  Überwachung des Speichers, der durch die Merge-Operation verbraucht wird, besonders in Bezug auf große Datenmengen.
+   Überwachung des Speichers, der durch die Merge-Operation verbraucht wird, besonders in Bezug auf große Datenmengen.
 - Anzahl der Fehler:
-  Anzahl der auftretenden Fehler, z. B. wenn ungültige Daten (falsche Typen oder Werte) übergeben werden.
+   Anzahl der auftretenden Fehler, z. B. wenn ungültige Daten (falsche Typen oder Werte) übergeben werden.
 - Systemressourcen:
-  CPU-Auslastung und Speicherverbrauch während der Ausführung der Merge-Operation. 
+   CPU-Auslastung und Speicherverbrauch während der Ausführung der Merge-Operation.
 
 #### Unit-Tests
 
