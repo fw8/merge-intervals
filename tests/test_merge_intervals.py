@@ -1,4 +1,5 @@
 import unittest
+
 from core.merge_intervals import merge_intervals
 from models.types import Interval
 

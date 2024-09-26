@@ -9,6 +9,7 @@
 
 
 from typing import List
+
 from models.types import Interval
 
 
