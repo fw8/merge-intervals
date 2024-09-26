@@ -87,7 +87,7 @@ docker run --rm -it -v ${pwd}:/work -w /work python:3.12 bash
 
 Die wichtigsten Verzeichnisse und Dateien im Projekt:
 
-```txt
+```txt {"id":"01J8Q344AA92SWHK2Y1KC732A6"}
 ├── README.md
 ├── core
 │   └── merge_intervals.py
@@ -105,6 +105,12 @@ Die wichtigsten Verzeichnisse und Dateien im Projekt:
 * `models`enthält die Pydantic-Modelle
 * `tests`enthält die Unit-Tests
 
+Beim Entwickeln sollten die `dev-requirements.txt` installiert werden, um alle benötigten Entwicklungstools zu bekommen:
+
+```bash {"id":"01J8Q344AA92SWHK2Y1P7FVYSM"}
+pip install -r dev-requirements.txt
+```
+
 ### Tools und Methoden
 
 Die Anwendung verschiedener Tools und Vorgehensweisen können helfen, den Code robuster, besser lesbar, besser wartbar und damit weniger fehleranfällig zu machen.
@@ -115,34 +121,48 @@ Es folgt eine Liste von Tools, die beim Entwickeln, aber auch in der automatisch
 **Ruff** ist ein unglaublich schneller Linter und Code-Formatter, der entwickelt wurde, um große Codebasen effizient zu handhaben. Er ist in Rust geschrieben und zielt darauf ab, Echtzeit-Feedback zu liefern, ohne Geschwindigkeit oder Genauigkeit zu opfern. **Ruff** wurde entwickelt, um Werkzeuge wie Flake8 zu ersetzen, und unterstützt eine breite Palette von Linting-Regeln.
 
 Wichtige Funktionen:
+
 * 10- bis 100-mal schneller als herkömmliche Linter.
 * Unterstützt eine Vielzahl von Linting-Regeln.
 * Benötigt minimale Konfiguration.
 * Bietet schnelles Feedback während der Entwicklung.
 
+Um den Code zu formatieren und die Importe in einem einheitlichen Schema zu sortieren, sollten folgende Kommandos vor jedem Commit mit Code-Änderungen ausgeführt werden:
+
+```bash {"id":"01J8Q344AA92SWHK2Y1R93S5YA"}
+ruff check --select I --fix .
+ruff format .
+```
 
 #### Pydantic: Datenvalidierung und Verwaltung von Einstellungen
 
 **Pydantic** ist eine Bibliothek zur Datenvalidierung und Einstellungenverwaltung, die Python-Typannotationen verwendet. Sie stellt die Datenintegrität sicher, indem sie Daten validiert und analysiert, was sie ideal für die Handhabung komplexer Konfigurationen und Datenstrukturen macht. **Pydantic** funktioniert hervorragend mit FastAPI und anderen Frameworks und bietet eine nahtlose Validierung von Anfragen- und Antwortdaten.
 
 Wichtige Funktionen:
+
 * Verwendet Typannotationen zur Datenvalidierung.
 * Parst und konvertiert Daten automatisch.
 * Funktioniert mit FastAPI für die API-Entwicklung.
 * Bietet effiziente und benutzerfreundliche Fehlerbehandlung.
-
 
 #### MyPy: Statische Typüberprüfung
 
 **MyPy** bringt statische Typüberprüfung in Python. Durch das Erzwingen von Typ-Hinweisen hilft **MyPy**, typbezogene Fehler früh im Entwicklungsprozess zu erkennen, was die Robustheit und Lesbarkeit des Codes verbessert. Es ist besonders nützlich für große Codebasen, bei denen dynamische Typisierung zu Laufzeitfehlern führen kann.
 
 Wichtige Funktionen:
+
 * Bietet statische Typüberprüfung für Python-Code.
 * Hilft, typbezogene Fehler zu erkennen und zu verhindern.
 * Verbessert die Lesbarkeit und Wartbarkeit des Codes.
 * Funktioniert mit Pydantic für eine nahtlose Datenvalidierung.
 
-## Anmerkungen
+Um eine Typüberprüfung durchzuführen, kann folgendes Kommando ausgeführt werden:
+
+```bash {"id":"01J8Q2YF3T5ZBJ5TNSDTTJEY27"}
+mypy .
+```
+
+## Weitere Anmerkungen
 
 ### Performance:
 
