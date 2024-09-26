@@ -1,3 +1,5 @@
+![Python tests](https://github.com/FW8/merge-intervals/actions/workflows/python-tests.yaml/badge.svg)
+
 # Implementierung einer Merge-Funktion für Intervalle
 
 ## Funktionsbeschreibung
