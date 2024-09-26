@@ -120,7 +120,7 @@ Es folgt eine Liste von Tools, die beim Entwickeln, aber auch in der automatisch
 
 #### Ruff: Schneller und Leichtgewichtiger Linter
 
-**Ruff** ist ein unglaublich schneller Linter und Code-Formatter, der entwickelt wurde, um große Codebasen effizient zu handhaben. Er ist in Rust geschrieben und zielt darauf ab, Echtzeit-Feedback zu liefern, ohne Geschwindigkeit oder Genauigkeit zu opfern. **Ruff** wurde entwickelt, um Werkzeuge wie Flake8 zu ersetzen, und unterstützt eine breite Palette von Linting-Regeln.
+**Ruff** ist ein sehr schneller Linter und Code-Formatter, der entwickelt wurde, um große Codebasen effizient zu handhaben. Er ist in Rust geschrieben und zielt darauf ab, Echtzeit-Feedback zu liefern, ohne Geschwindigkeit oder Genauigkeit zu opfern. **Ruff** wurde entwickelt, um Werkzeuge wie Flake8 zu ersetzen, und unterstützt eine breite Palette von Linting-Regeln.
 
 Wichtige Funktionen:
 
@@ -173,7 +173,7 @@ Die Leistung der Funktion wird vor allem durch das Sortieren der Intervalle best
 ### Speicherverbrauch:
 
 1. **Sortieren**:  
-   Die Python-Methode `list.sort()` führt eine "in-place"-Sortierung durch, was bedeutet, dass der Speicherbedarf minimal ist, da kein zusätzlicher Speicher für die Liste selbst benötigt wird. Lediglich Platz für ein temporäres Element wird zusätzlich gebraucht.
+   Die Python-Methode `list.sort()` führt eine "in-place"-Sortierung durch, was bedeutet, dass der Speicherbedarf minimal ist, da lediglich Platz für ein temporäres Element zusätzlich gebraucht wird.
 2. **Merging-Phase**:  
    Im schlimmsten Fall kann die Speicheranforderung für die Ergebnisliste genauso groß sein wie die Eingabeliste, da eine neue Liste `merged` erstellt wird, in die die gemergten Intervalle eingefügt werden.
 
@@ -204,7 +204,7 @@ Metriken bereitstellen (z.B. für Prometheus).
 
 #### Unit-Tests
 
-Tests auf Grenzfälle durch Unit-Tests, die sowohl normale als auch Grenzfälle abdecken (z. B. überlappende Intervalle, identische Intervalle, keine Überlappung).
+Tests, die sowohl normale als auch Grenzfälle abdecken (z. B. überlappende Intervalle, identische Intervalle, keine Überlappung).
 
 #### Benchmarking
 
