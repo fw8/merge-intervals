@@ -48,11 +48,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Linting with ruff
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           # Installiere ruff in der Version, die in dev-requirements.txt definiert ist
           pip install $(grep '^ruff' dev-requirements.txt)
+
+      - name: Do linting with ruff
+        run: ruff check .
 
   # Führe die Unittests mit pytest durch
   unittests:
