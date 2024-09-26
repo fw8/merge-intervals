@@ -1,6 +1,6 @@
 # Beispiel-Code für die Verwendung der Funktion merge_intervals
 from core.merge_intervals import merge_intervals
-from models.types import Interval
+from models.custom_types import Interval
 
 try:
     # Beispiel-Intervalle

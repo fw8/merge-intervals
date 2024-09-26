@@ -5,12 +5,12 @@
 # - intervals: Eine Liste von Intervallen, die zusammengeführt werden sollen.
 # Rückgabewert:
 # - Eine Liste von zusammengeführten Intervallen.
-# Hinweis: Die Funktion verwendet das Modell Interval aus models/types.py.
+# Hinweis: Die Funktion verwendet das Pydanitc-Modell Interval.
 
 
 from typing import List
 
-from models.types import Interval
+from models.custom_types import Interval
 
 
 def merge_intervals(intervals: List[Interval]) -> List[Interval]:
