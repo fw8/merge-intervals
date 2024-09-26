@@ -11,8 +11,9 @@ on:
 
 jobs:
 
-  ruff:
-    runs-on: ubuntu-latest  # Der Job läuft auf einem Ubuntu-Runner
+  # Führe die statische Codeanalyse mit mypy durch
+  mypy:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository code
@@ -23,11 +24,37 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check with ruff
-        uses: chartboost/ruff-action@v1
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Installiere mypy in der Version, die in dev-requirements.txt definiert ist
+          pip install $(grep '^mypy' dev-requirements.txt)
 
+      - name: Static type checking with mypy
+        run: mypy .
+
+  # Führe die Codeanalyse mit ruff durch
+  ruff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Linting with ruff
+        run: |
+          python -m pip install --upgrade pip
+          # Installiere ruff in der Version, die in dev-requirements.txt definiert ist
+          pip install $(grep '^ruff' dev-requirements.txt)
+
+  # Führe die Unittests mit pytest durch
   unittests:
-    runs-on: ubuntu-latest  # Der Job läuft auf einem Ubuntu-Runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository code

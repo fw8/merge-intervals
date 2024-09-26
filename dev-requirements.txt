@@ -1,0 +1,4 @@
+-r requirements.txt
+-r tests/requirements.txt
+mypy==1.11.2
+ruff==0.6.7
